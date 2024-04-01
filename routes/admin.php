@@ -24,6 +24,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'gues
     });
     Route::group(['namespace'=>'Admin','prefix' => 'admin', 'middleware' => 'auth:admin'], 
     function () {
-        Route::get('dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
+        Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
     });

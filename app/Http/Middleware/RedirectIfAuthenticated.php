@@ -22,9 +22,19 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+       if(Auth::guard($guard)->check()){
+  //write code for redirect both for admin or front in case login alerady done   
+  if($request->is('admin')||$request->is('admin/*'))
+  {
+//redirect Backend
+return redirect(RouteServiceProvider::Admin);
+
+  }else{
+//redirect front end  in case there is front
+//  return redirect(RouteServiceProvider::HOME);
+return redirect(RouteServiceProvider::Admin);
+  }
+       }    
         }
 
         return $next($request);
